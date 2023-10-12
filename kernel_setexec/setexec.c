@@ -220,7 +220,7 @@ static inline void set_reserved(unsigned long vaddr)
     pud_t *pud;
     pmd_t *pmd;
     pte_t *pte;
-    p4d_t *p4d, *p4d_k;
+    p4d_t *p4d;
  
     pgd = pgd_offset(current->mm, vaddr);
     if (pgd_none(*pgd)) {
@@ -260,7 +260,7 @@ static inline void set_present(unsigned long vaddr)
     pud_t *pud;
     pmd_t *pmd;
     pte_t *pte;
-    p4d_t *p4d, *p4d_k;
+    p4d_t *p4d;
  
     pgd = pgd_offset(current->mm, vaddr);
     if (pgd_none(*pgd)) {
@@ -273,7 +273,7 @@ static inline void set_present(unsigned long vaddr)
         return 0;
     }
  
-    pud = pud_offset(pgd, vaddr);
+    pud = pud_offset(p4d, vaddr);
     if (pud_none(*pud)) {
         printk("not mapped in pud\n");
         return;
@@ -300,7 +300,7 @@ static inline void set_cacheable(unsigned long vaddr)
     pud_t *pud;
     pmd_t *pmd;
     pte_t *pte;
-    p4d_t *p4d, *p4d_k;
+    p4d_t *p4d;
  
     pgd = pgd_offset(current->mm, vaddr);
     if (pgd_none(*pgd)) {
@@ -313,7 +313,7 @@ static inline void set_cacheable(unsigned long vaddr)
         return 0;
     }
  
-    pud = pud_offset(pgd, vaddr);
+    pud = pud_offset(p4d, vaddr);
     if (pud_none(*pud)) {
         printk("not mapped in pud\n");
         return;
@@ -340,7 +340,7 @@ static inline void set_rw(unsigned long vaddr)
     pud_t *pud;
     pmd_t *pmd;
     pte_t *pte;
-    p4d_t *p4d, *p4d_k;
+    p4d_t *p4d;
  
     pgd = pgd_offset(current->mm, vaddr);
     if (pgd_none(*pgd)) {
@@ -353,7 +353,7 @@ static inline void set_rw(unsigned long vaddr)
         return 0;
     }
  
-    pud = pud_offset(pgd, vaddr);
+    pud = pud_offset(p4d, vaddr);
     if (pud_none(*pud)) {
         printk("not mapped in pud\n");
         return;
@@ -381,7 +381,7 @@ static inline void set_us(unsigned long vaddr)
     pud_t *pud;
     pmd_t *pmd;
     pte_t *pte;
-    p4d_t *p4d, *p4d_k;
+    p4d_t *p4d;
  
     pgd = pgd_offset(current->mm, vaddr);
     if (pgd_none(*pgd)) {
@@ -394,7 +394,7 @@ static inline void set_us(unsigned long vaddr)
         return 0;
     }
  
-    pud = pud_offset(pgd, vaddr);
+    pud = pud_offset(p4d, vaddr);
     if (pud_none(*pud)) {
         printk("not mapped in pud\n");
         return;
@@ -422,7 +422,7 @@ static inline void set_xd(unsigned long vaddr)
     pud_t *pud;
     pmd_t *pmd;
     pte_t *pte;
-    p4d_t *p4d, *p4d_k;
+    p4d_t *p4d;
  
     pgd = pgd_offset(current->mm, vaddr);
     if (pgd_none(*pgd)) {
@@ -435,7 +435,7 @@ static inline void set_xd(unsigned long vaddr)
         return 0;
     }
  
-    pud = pud_offset(pgd, vaddr);
+    pud = pud_offset(p4d, vaddr);
     if (pud_none(*pud)) {
         printk("not mapped in pud\n");
         return;
@@ -462,7 +462,7 @@ static inline void set_pkey(unsigned long vaddr, int pkey)
     pud_t *pud;
     pmd_t *pmd;
     pte_t *pte;
-    p4d_t *p4d, *p4d_k;
+    p4d_t *p4d;
  
     pgd = pgd_offset(current->mm, vaddr);
     if (pgd_none(*pgd)) {
@@ -475,7 +475,7 @@ static inline void set_pkey(unsigned long vaddr, int pkey)
         return 0;
     }
  
-    pud = pud_offset(pgd, vaddr);
+    pud = pud_offset(p4d, vaddr);
     if (pud_none(*pud)) {
         printk("not mapped in pud\n");
         return;
@@ -502,7 +502,7 @@ static inline size_t translate(unsigned long vaddr)
     pud_t *pud;
     pmd_t *pmd;
     pte_t *pte;
-    p4d_t *p4d, *p4d_k;
+    p4d_t *p4d;
  
     pgd = pgd_offset(current->mm, vaddr);
     if (pgd_none(*pgd)) {
@@ -515,7 +515,7 @@ static inline size_t translate(unsigned long vaddr)
         return 0;
     }
  
-    pud = pud_offset(pgd, vaddr);
+    pud = pud_offset(p4d, vaddr);
     if (pud_none(*pud)) {
         printk("not mapped in pud\n");
         return 0;
